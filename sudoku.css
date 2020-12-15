@@ -1,0 +1,23 @@
+body{
+    text-align: center;
+    background-color: #CEECFF;
+}
+#sudoku{
+    border-collapse: collapse;
+    margin: auto;
+    margin-bottom: 1em;
+    background-color: white;
+}
+colgroup, tbody { 
+    border: solid medium; 
+}
+td { 
+    border: solid thin; 
+    height: 1.75em; 
+    width: 1.75em; 
+    text-align: center; 
+    padding: 0; 
+}
+input{
+    margin-right: 1em
+}
