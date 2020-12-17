@@ -1,8 +1,11 @@
 var board = [];
+var solved = false;
+var stopAnimation = false;
 generateBoard();
 
 function generateBoard(){
     board = [];
+    frames = [];
     for (var x = 0; x < 9; x++){
         board.push([0,0,0,0,0,0,0,0,0])
     }
@@ -10,12 +13,35 @@ function generateBoard(){
     setBoardHTML();
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function solveBoard(){
-    solve();
+    solve(true);
+    solved = true;
+    stopAnimation = true;
     setBoardHTML();
 }
 
-function setBoardHTML(){
+async function animateSolution(){
+    document.getElementById("animate").disabled = true; 
+    if (stopAnimation){stopAnimation=false;}
+    if (!solved){
+        solve(true);  
+        solved = true;
+    }
+    for (let f = 0; f < frames.length; f++){
+        document.getElementById("sudoku").innerHTML = frames[f];
+        await sleep(100);
+        if (stopAnimation){
+            break;
+        }
+    }
+    document.getElementById("animate").disabled = false; 
+}
+
+function getBoardHTML(){
     var msg = "<colgroup><col><col><col></colgroup>";
     msg += msg + msg;
 
@@ -34,8 +60,11 @@ function setBoardHTML(){
         }
         msg += "</tbody>";
     }
+    return msg;
+}
 
-    document.getElementById("sudoku").innerHTML = msg;
+function setBoardHTML(){
+    document.getElementById("sudoku").innerHTML = getBoardHTML();
 }
 
 function createBoard(){
@@ -74,7 +103,7 @@ function shuffle(array){
     }
 }
 
-function solve(){
+function solve(animate=false){
     for (var row = 0; row < 9; row++){
         for (var column = 0; column < 9; column++){
             if (board[row][column] == 0){
@@ -86,8 +115,11 @@ function solve(){
                 for (var v = 0; v < 9; v++){
                     var e = values[v];
                     if (validPlacement(e, row, column)){
-                        board[row][column] = e; 
-                        solve();
+                        board[row][column] = e;
+                        if (animate){
+                            frames.push(getBoardHTML())
+                        }
+                        solve(animate);
                         if (!isSolved()){
                             board[row][column] = 0;
                         }

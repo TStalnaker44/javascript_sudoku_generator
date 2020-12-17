@@ -9,7 +9,9 @@
         <p>Try your hand at a Sudoku puzzle or have the computer solve it for you</p>
         <table id="sudoku"></table>
         <input type="button" value="New Puzzle" onclick="generateBoard()"/>
-        <input type="button" value="Solve" onclick="solveBoard()"/>
+        <input type="button" value="Solve" onclick="solveBoard()" id="solve"/>
+        <input type="button" value="Animate Solution" onclick="animateSolution()" id="animate"/>
+        <table id="sudoku_animated"></table>
         <script src="sudoku.js"></script>
     </body>
 </html>
