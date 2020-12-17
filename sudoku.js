@@ -24,6 +24,15 @@ function solveBoard(){
     setBoardHTML();
 }
 
+function getAnimationSpeed(){
+    var buttons = document.getElementsByName('speed');
+    for (var i = 0, length = buttons.length; i < length; i++) {
+        if (buttons[i].checked) {
+            return buttons[i].value;
+        }
+    }
+}
+
 async function animateSolution(){
     document.getElementById("animate").disabled = true; 
     if (stopAnimation){stopAnimation=false;}
@@ -31,9 +40,12 @@ async function animateSolution(){
         solve(true);  
         solved = true;
     }
+    var animationSpeed = getAnimationSpeed();
     for (let f = 0; f < frames.length; f++){
-        document.getElementById("sudoku").innerHTML = frames[f];
-        await sleep(100);
+        if (f%animationSpeed==0 || f == frames.length-1){
+            document.getElementById("sudoku").innerHTML = frames[f];
+            await sleep(100);
+        }
         if (stopAnimation){
             break;
         }

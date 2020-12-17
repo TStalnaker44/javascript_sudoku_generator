@@ -21,3 +21,7 @@ td {
 input{
     margin-right: 1em
 }
+
+label{
+    padding-right: 2em;
+}

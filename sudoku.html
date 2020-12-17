@@ -8,10 +8,22 @@
         <h1>Sudoku Puzzle Generator and Solver</h1>
         <p>Try your hand at a Sudoku puzzle or have the computer solve it for you</p>
         <table id="sudoku"></table>
-        <input type="button" value="New Puzzle" onclick="generateBoard()"/>
-        <input type="button" value="Solve" onclick="solveBoard()" id="solve"/>
-        <input type="button" value="Animate Solution" onclick="animateSolution()" id="animate"/>
-        <table id="sudoku_animated"></table>
+        <p>
+            <input type="button" value="New Puzzle" onclick="generateBoard()"/>
+            <input type="button" value="Solve" onclick="solveBoard()" id="solve"/>
+            <input type="button" value="Animate Solution" onclick="animateSolution()" id="animate"/>
+        </p>
+        <h3>Animation Speed</h3>
+        <div>
+            <input type="radio" name="speed" id="slowSpeed" value="1" checked="checked">
+            <label for="slowSpeed">Slow</label>
+            <input type="radio" name="speed" id="mediumSpeed" value="3">
+            <label for="mediumSpeed">Medium</label>
+            <input type="radio" name="speed" id="fastSpeed" value="5">
+            <label for="fastSpeed">Fast</label>
+            <input type="radio" name="speed" id="superSpeed" value="7">
+            <label for="superSpeed">Super</label>
+        </div>
         <script src="sudoku.js"></script>
     </body>
 </html>
