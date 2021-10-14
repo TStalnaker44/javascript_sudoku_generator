@@ -4,6 +4,7 @@ var stopAnimation = false;
 generateBoard();
 
 function generateBoard(){
+    solved = false;
     board = [];
     frames = [];
     for (var x = 0; x < 9; x++){
